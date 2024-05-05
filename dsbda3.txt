@@ -1,0 +1,51 @@
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sb
+
+iris = pd.read_csv("/home/student/Desktop/Iris.csv")
+ 
+iris.head(6)
+
+
+iris.mean()
+
+iris.loc[:,'SepalLengthCm'].mean()
+
+
+iris.mean(axis=1)[0:4]
+
+iris.median()
+
+iris.loc[:,'Id'].median()
+
+iris.median(axis=1)[0:6]
+
+iris.mode()
+
+iris.loc[:,'PetalLengthCm'].mode()
+
+iris.min()
+
+iris.max()
+
+iris.std()
+
+iris.loc[:,'SepalWidthCm'].std()
+
+iris.std(axis=1)[0:7]
+
+iris.groupby(['Id'])['SepalLengthCm'].mean()
+
+iris_u=iris.rename(columns={'PetalLengthCm':'P_Width'},inplace=True)
+
+iris_u.groupby(['SepalWidthCm']).P_Width.mean())
+
+iris.head(5)
+
+
+
+
+
+

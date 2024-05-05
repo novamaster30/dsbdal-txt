@@ -1,0 +1,99 @@
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as se
+
+
+ap = pd.read_csv("/home/student/Desktop/Academic_Performance.csv")
+
+ap.head(6)
+
+ap.isnull()
+
+series=pd.isnull(ap["Reading Score"])
+ap[series]
+
+series=pd.isnull(ap["Placement Score"])
+ap[series]
+
+
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+
+ap['Gender'] = le.fit_transform(ap['Gender'])
+newdf=ap
+ap
+
+
+ap.dropna(how = 'all')
+
+ap.dropna(axis = 1)
+
+new_data = ap.dropna(axis = 0,how='any')
+new_data
+
+
+print(np.where(ap['Reading Score']<25))
+print(np.where(ap['Writing Score']<30))
+
+sorted_rscore = sorted(ap['Writing Score'])
+
+q1 = np.percentile(sorted_rscore,25)
+q3 = np.percentile(sorted_rscore,75)
+print(q1,q3)
+
+
+lwr_bound = q1-(1.5*IQR)
+upr_bound = q1+(1.5*IQR)
+print(lwr_bound,upr_bound)
+
+
+r_outliers = []
+for i in sorted_rscore:
+ if(i<lwr_bound or i>upr_bound):
+ r_outliers.append(i)
+print(r_outliers)
+
+col = ['Math Score','Reading Score' , 'Writing Score','Placement Score']
+ap.boxplot(col)
+
+fig,ax = plt.subplots(figsize = (18,10))
+ax.scatter(ap['Math Score'],ap['Writing Score'])
+plt.show()
+
+
+z = np.abs(stats.zscore(ap['Writing Score']))
+print(z)
+
+
+sample_outliers = np.where(z <threshold)
+sample_outliers
+
+
+
+sorted_rscore =sorted(ap['Reading Score'])
+In [36]:
+sorted_rscore
+
+
+
+new_df=ap
+for i in sample_outliers:
+ new_df.drop(i,inplace=True)
+new_df
+
+
+ap['Math Score'].plot(kind = 'hist')
+plt.show()
+
+
+ap['log_math'].plot(kind = 'hist')
+plt.show()
+
+
+
+
+
+
+

@@ -1,0 +1,41 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as se
+
+weather = pd.read_csv("/home/student/Downloads/weatherAUS.csv")
+
+weather.head(6)
+
+weather.tail(4)
+
+weather.index
+
+weather.columns
+
+weather.shape
+
+weather.dtypes
+
+weather.columns.values
+
+weather.describe(include='all')
+
+weather['Date']
+
+weather.iloc[5]
+
+weather[0:3]
+
+weather.loc[:,["Date","Location"]]
+
+weather.iloc[:2,]
+
+weather.iloc[:2,5]
+
+weather.iloc[4:,]
+
+weather.iloc[:2,:2]
+
+weather.iloc[3:5,0:2]
+

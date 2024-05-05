@@ -1,0 +1,61 @@
+import numpy as py
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as se
+import sklearn as skl
+
+
+df=pd.read_csv("/home/student/Desktop/cota63/Social_Network_Ads.csv")
+df
+
+
+from sklearn import preprocessing
+df['Gender'].unique()
+
+label_encoder=preprocessing.LabelEncoder()
+df['Gender']=label_encoder.fit_transform(df['Gender'])
+
+df['Gender'].unique
+
+features_df=df.drop(columns=['Gender'])
+
+enc=preprocessing.OneHotEncoder 
+
+df.head()
+
+df.isnull()
+
+x=df.drop(['Purchased'],axis=1)
+y=df['Purchased']
+
+from sklearn.model_selection import train_test_split
+xtrain,xtest,ytrain,ytest=train_test_split(x,y,test_size=0.2,random_state=0)
+
+from sklearn.linear_model import LogisticRegression
+logreg=LogisticRegression()
+
+logreg.fit(xtrain,ytrain)
+
+logisticRegression(C=1.0,class_weight=None,dual=False,fit_intercept=True,intercept_scali
+ytrain_pred=logreg.predict(xtrain)
+ytest_pred=logreg.predict(xtest)
+
+
+df=pd.DataFrame(ytrain_pred,ytrain)
+df=pd.DataFrame(ytest_pred,ytest)
+
+y_pred=logreg.predict(xtest)
+
+from sklearn.metrics import precision_score,confusion_matrix,accuracy_score,recall_score
+accuracy=accuracy_score(ytest,y_pred)
+precision=precision_score(ytest,y_pred,average="micro")
+recall=recall_score(ytest,y_pred,average="micro")
+cm=confusion_matrix(ytest,y_pred)
+
+accuracy
+
+precision
+
+recall
+
+cm
